@@ -1,0 +1,4 @@
+{
+  "//": "Helps make all modules resolve to the root app director",
+  "name": "~"
+}

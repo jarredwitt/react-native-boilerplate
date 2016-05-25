@@ -1,0 +1,8 @@
+import { Reducer } from 'react-native-router-ex';
+import { combineReducers } from 'redux';
+
+export default function createReducer() {
+  return combineReducers({
+    navState: Reducer,
+  });
+}
