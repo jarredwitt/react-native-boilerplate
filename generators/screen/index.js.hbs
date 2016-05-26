@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 
 {{#if wantActionsAndReducer}}
 import {} from '~/actions/{{camelCase name}}';
-import select{{properCase name}} from '~/selectors';
+import { select{{properCase name}} } from '~/selectors';
 {{/if}}
 {{#if wantStyle}}
 import styles from './styles/index.style';
