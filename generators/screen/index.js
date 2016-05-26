@@ -13,7 +13,7 @@ module.exports = {
     },
   }, {
     type: 'confirm',
-    name: 'style',
+    name: 'wantStyle',
     default: true,
     message: 'Do you want styles?',
   }],
@@ -25,7 +25,7 @@ module.exports = {
       abortOnFail: true,
     }];
 
-    if (data.style) {
+    if (data.wantStyle) {
       actions.push({
         type: 'add',
         path: '../app/screens/{{properCase name}}/styles/index.style.js',

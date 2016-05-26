@@ -1,28 +1,49 @@
 /*
 *
-*	{{properCase name}} - generated using screen generator
+*	{{properCase name}} - built using screen generator
 *
- */
+*/
 
 import React, { Component, PropTypes } from 'react';
 import { Text, View } from 'react-native';
+import { connect } from 'react-redux';
 
-{{#if style}}
+{{#if wantSelector}}
+import select{{properCase name}} from '~/selectors';
+{{/if}}
+{{#if wantStyle}}
 import styles from './styles/index.style';
 {{/if}}
 
-class {{properCase name}} extends Component {
+export class {{properCase name}} extends Component {
   static propTypes = {
 
   };
 
   render() {
     return (
+      {{#if wantStyle}}
       <View style={styles.main}>
         <Text>I am the {{properCase name}} screen.</Text>
       </View>
+      {{else}}
+      <View>
+        <Text>I am the {{properCase name}} screen.</Text>
+      </View>
+      {{/if}}
     );
   }
 }
 
-export default {{properCase name}};
+const mapStateToProps = ({
+  select{{properCase name}}(),
+  () => ({}),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)({{properCase name}});
