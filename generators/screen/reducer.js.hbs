@@ -1,0 +1,21 @@
+/*
+*
+*	{{properCase name}} - built using screen generator
+*
+*/
+
+import { fromJS } from 'immutable';
+import * as actions from './constants/{{camelCase name}}';
+
+const initialState = fromJS({});
+
+function {{camelCase name}}(state = initialState, action) {
+  switch (action.type) {
+    case actions.DEFAULT_ACTION:
+      return state;
+    default:
+      return state;
+  }
+}
+
+export default {{camelCase name}};

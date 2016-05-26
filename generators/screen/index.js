@@ -61,53 +61,63 @@ module.exports = {
         abortOnFail: true,
       });
 
-      /* // Constants
+      // Constants
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/constants.js',
-        templateFile: './container/constants.js.hbs',
+        path: '../app/constants/{{camelCase name}}.js',
+        templateFile: './screen/constants.js.hbs',
         abortOnFail: true,
       });
 
       // Selectors
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/selectors.js',
-        templateFile: './container/selectors.js.hbs',
+        path: '../app/selectors/{{camelCase name}}.js',
+        templateFile: './screen/selectors.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/selectors.test.js',
-        templateFile: './container/selectors.test.js.hbs',
+        path: '../app/selectors/tests/{{camelCase name}}.test.js',
+        templateFile: './screen/selectors.test.js.hbs',
         abortOnFail: true,
+      }, {
+        type: 'modify',
+        path: '../app/selectors/index.js',
+        pattern: /(\/\/ -- APPEND ITEMS HERE)/gi,
+        template: '$1\nimport select{{properCase name}} from \'./{{camelCase name}}\';',
+      }, {
+        type: 'modify',
+        path: '../app/selectors/index.js',
+        pattern: /(module.exports = {)/gi,
+        template: '$1\n  select{{properCase name}},',
       });
 
       // Reducer
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/reducer.js',
-        templateFile: './container/reducer.js.hbs',
+        path: '../app/reducers/{{camelCase name}}.js',
+        templateFile: './screen/reducer.js.hbs',
         abortOnFail: true,
       });
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
-        templateFile: './container/reducer.test.js.hbs',
+        path: '../app/reducers/tests/{{camelCase name}}.test.js',
+        templateFile: './screen/reducer.test.js.hbs',
         abortOnFail: true,
       });
       actions.push({ // Add the reducer to the reducer.js file
         type: 'modify',
-        path: '../../app/reducers.js',
-        pattern: /(\.\.\.asyncReducers,\n {2}}\);)/gi,
-        template: '{{camelCase name}}: {{camelCase name}}Reducer,\n    $1',
+        path: '../app/reducers/index.js',
+        pattern: /(combineReducers\({)/gi,
+        template: '$1\n    {{camelCase name}},',
       });
       actions.push({
         type: 'modify',
-        path: '../../app/reducers.js',
-        pattern: /(export default function createReducer)/gi,
-        template: 'import {{camelCase name}}Reducer from \'containers/{{properCase name}}/reducer\';\n$1',
-      });*/
+        path: '../app/reducers/index.js',
+        pattern: /(\/\/ -- APPEND ITEMS HERE)/gi,
+        template: '$1\nimport {{camelCase name}} from \'./{{camelCase name}}\';',
+      });
     }
 
     actions.push({

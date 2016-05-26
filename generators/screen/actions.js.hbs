@@ -4,12 +4,10 @@
 *
 */
 
-import {
-  DEFAULT_ACTION,
-} from '~/constants/{{camelCase name}}';
+import * as actions from '~/constants/{{camelCase name}}';
 
 export function defaultAction() {
   return {
-    type: DEFAULT_ACTION,
+    type: actions.DEFAULT_ACTION,
   };
 }

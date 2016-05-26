@@ -1,0 +1,9 @@
+import expect from 'expect';
+import {{ camelCase name }} from '../{{camelCase name}}';
+import { fromJS } from 'immutable';
+
+describe('{{ camelCase name }} Reducer', () => {
+  it('returns the initial state', () => {
+    expect({{ camelCase name }}(undefined, {})).toEqual(fromJS({}));
+  });
+});

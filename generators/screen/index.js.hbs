@@ -7,7 +7,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-
+import { createSelector } from 'reselect';
 
 {{#if wantActionsAndReducer}}
 import {} from '~/actions/{{camelCase name}}';
@@ -37,10 +37,10 @@ export class {{properCase name}} extends Component {
   }
 }
 
-const mapStateToProps = ({
+const mapStateToProps = createSelector(
   select{{properCase name}}(),
   () => ({}),
-});
+);
 
 function mapDispatchToProps(dispatch) {
   return {
