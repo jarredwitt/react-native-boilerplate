@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { Text } from 'react-native';
 import { Provider, connect } from 'react-redux';
-import { Router, RootScene, TabScene } from 'react-native-router-ex';
+import { Router, TabNavigation, TabScene } from 'react-native-router-ex';
 
 import configureStore from './store';
-import { Main } from './screens';
+import {
+  Main,
+  Settings,
+} from './screens';
 
 const scenes = (
-  <RootScene type="tabs">
+  <TabNavigation>
     <TabScene key="main" title="Main" component={Main} />
-  </RootScene>
+    <TabScene key="settings" title="Settings" component={Settings} />
+  </TabNavigation>
 );
 
 const mapStateToProps = (state) => ({
@@ -17,12 +22,27 @@ const mapStateToProps = (state) => ({
 
 const RouterScene = connect(mapStateToProps)(Router);
 
-const store = configureStore();
 
-const Root = () => (
-  <Provider store={store}>
-    <RouterScene scenes={scenes} />
-  </Provider>
-);
+class Root extends Component {
+  componentWillMount() {
+    this._loadStore();
+  }
+  _loadStore = async () => {
+    const store = await configureStore();
+    this.store = store;
+    this.forceUpdate();
+  }
+  render() {
+    if (!this.store) {
+      return <Text>Waiting for store...</Text>;
+    }
+
+    return (
+      <Provider store={this.store}>
+        <RouterScene scenes={scenes} />
+      </Provider>
+    );
+  }
+}
 
 export default Root;
